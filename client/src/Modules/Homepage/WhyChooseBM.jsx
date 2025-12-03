@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaTrophy, FaChalkboardTeacher, FaGraduationCap, FaBriefcase, FaStar, FaPhoneAlt, FaArrowRight } from 'react-icons/fa';
+import { FaTrophy, FaChalkboardTeacher, FaGraduationCap, FaBriefcase, FaStar, FaWhatsapp, FaArrowRight } from 'react-icons/fa';
 
 const features = [
   {
@@ -48,21 +48,33 @@ const cardVariants = {
 };
 
 const WhyChooseUs = () => {
+  // Define the default WhatsApp message
+  const defaultMessage = "Hi, I'm interested in reserving a seat for the Free Masterclass!";
+  
   return (
     <section className="py-24 bg-gray-950 relative overflow-hidden">
       
-      {/* --- BACKGROUND --- */}
+      {/* --- NEW VECTOR BACKGROUND (Clean Grid) --- */}
+      {/* This matches the 'grid' look in your uploaded image */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 opacity-[0.03]" style={{backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`, backgroundSize: '40px 40px'}}></div>
-        <div className="absolute inset-0 bg-gray-950 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black_100%)]"></div>
-        <svg className="absolute top-0 right-0 w-[600px] h-[600px] text-yellow-500/5 opacity-40 blur-3xl animate-pulse" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-           <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="2" fill="none" />
-           <path d="M50 10 L50 90 M10 50 L90 50" stroke="currentColor" strokeWidth="2" />
-        </svg>
-        <svg className="absolute bottom-0 left-0 w-[800px] h-[800px] text-blue-500/5 opacity-30 blur-3xl" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-           <rect x="20" y="20" width="60" height="60" rx="10" stroke="currentColor" strokeWidth="2" fill="none" />
-        </svg>
+        
+        {/* Fine Grid Pattern */}
+        <div 
+          className="absolute inset-0 opacity-[0.05]" 
+          style={{
+            backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px)`,
+            backgroundSize: '30px 30px'
+          }}
+        ></div>
+
+        {/* Soft Radial Gradient to focus attention on center */}
+        <div className="absolute inset-0 bg-gray-950 [mask-image:radial-gradient(ellipse_at_center,transparent_10%,black_80%)]"></div>
+        
+        {/* Subtle decorative glow in corners */}
+        <div className="absolute top-0 left-0 w-full h-1/2 bg-yellow-500/5 blur-[100px] rounded-full transform -translate-y-1/2"></div>
       </div>
+      {/* ---------------------------------- */}
+
 
       <div className="container mx-auto px-6 relative z-10">
         
@@ -91,15 +103,25 @@ const WhyChooseUs = () => {
           >
             Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-500"> BM Academy?</span>
           </motion.h1>
+          
+          <motion.p 
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed"
+          >
+            Discover the future of coding and secure your spot in the <span className="text-slate-200 font-medium">AI revolution</span>.
+          </motion.p>
         </div>
 
-        {/* CARDS */}
+        {/* FEATURES GRID */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="flex flex-wrap justify-center gap-6"
+          className="flex flex-wrap justify-center gap-6 mb-24"
         >
           {features.map((feature, index) => (
             <motion.div 
@@ -129,50 +151,50 @@ const WhyChooseUs = () => {
           ))}
         </motion.div>
 
-        {/* --- NEW BOTTOM CTA SECTION --- */}
+        {/* --- BOTTOM CTA SECTION (Styled like Image) --- */}
         <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="mt-24 max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          // Matches the dark card aesthetic from
+          className="relative max-w-5xl mx-auto text-center bg-[#0a0a0a] border border-white/10 rounded-3xl p-10 md:p-14 overflow-hidden shadow-2xl"
         >
-            <div className="relative rounded-3xl bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border border-white/10 p-8 md:p-12 text-center overflow-hidden shadow-2xl">
-                
-                {/* Glow Effects behind CTA */}
-                <div className="absolute top-0 left-1/4 w-64 h-64 bg-yellow-500/10 blur-[100px] rounded-full pointer-events-none"></div>
-                <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-blue-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+           {/* Internal Grid Background for the card */}
+           <div 
+  className="absolute inset-0 opacity-[0.07] pointer-events-none" 
+  style={{
+    backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
+    backgroundSize: '20px 20px',
+    // This fades the top (transparent at start, visible after 20%)
+    maskImage: 'linear-gradient(to bottom, transparent 0%, black 200%)',
+    WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%)'
+  }}
+></div>
 
-                <div className="relative z-10 flex flex-col items-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                        Ready to Transform Your Career?
-                    </h2>
-                    <p className="text-gray-400 text-lg mb-8 max-w-2xl">
-                        Don't let another year pass wishing you had started. Join our next batch and become a job-ready developer in just 90 days.
-                    </p>
+          <div className="relative z-10">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              Ready to <span className="text-yellow-500">Build the Future?</span>
+            </h2>
+            <p className="text-gray-400 mb-10 max-w-2xl mx-auto text-lg leading-relaxed">
+              Join the elite group of developers who are shaping the world. Limited spots available for the next batch.
+            </p>
 
-                    <div className="flex flex-col md:flex-row gap-6 items-center">
-                        {/* Primary Button */}
-                        <a href="#register" className="group relative px-8 py-4 bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-bold rounded-full transition-all shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:shadow-[0_0_30px_rgba(234,179,8,0.5)] flex items-center gap-2">
-                            <span>Secure Your FREE Seat Now!</span>
-                            <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-                        </a>
-
-                        {/* Secondary Phone Button */}
-                        <div className="flex items-center gap-3 text-white">
-                            <div className="w-12 h-12 rounded-full bg-gray-700/50 flex items-center justify-center text-yellow-500 animate-pulse">
-                                <FaPhoneAlt />
-                            </div>
-                            <div className="text-left">
-                                <span className="block text-xs text-gray-400 uppercase tracking-wider">Call for Enquiry</span>
-                                <span className="text-xl font-bold tracking-wide">99442 88271</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div className="flex flex-col items-center justify-center gap-6">
+              {/* Button styled like the yellow button in */}
+              <a 
+                href={`https://wa.me/919944288271?text=${encodeURIComponent(defaultMessage)}`} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center justify-center gap-3 px-10 py-4 bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-bold text-lg rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:shadow-[0_0_30px_rgba(234,179,8,0.5)] hover:-translate-y-1"
+              >
+                <span>Reserve Your Spot Today</span>
+                <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </a>
             </div>
+          </div>
         </motion.div>
-
+        
       </div>
     </section>
   );
